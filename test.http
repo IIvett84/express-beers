@@ -1,0 +1,7 @@
+POST http://localhost:8080/api/beers
+Content-Type: application/json
+
+{
+  "title": "Test Title",
+  "text": "Very cold, very big, very good"
+}
