@@ -11,13 +11,57 @@ export function createHeader() {
   return nav;
 }
 
+// This function has no side effects (pure function)
+// f(x) -> x * 2
+// f() -> el
 export function createBeerForm() {
-  const form = createEl('form');
+  const form = createEl('form', { className: 'beer-form' });
 
-  const body = createEl('textarea', { name: 'text' });
+  const titleEl = createEl('input', { name: 'title' });
+  const textEl = createEl('textarea', { name: 'text' });
+  const imageEl = createEl('input', { type: 'hidden', name: 'image', id: 'image' });
   const submit = createEl('button', { type: 'submit', innerText: 'Send this post' });
 
-  form.append(body, submit);
+  form.append(titleEl, textEl, imageEl, submit);
 
   return form;
+}
+
+export function createBeerFileUploadForm() {
+  const form = createEl('form', { className: 'beer-form' });
+  const uploadEl = createEl('input', { type: 'file', name: 'image' });
+  const submitEl = createEl('button', { type: 'submit', innerText: 'upload file for post' })
+
+  form.append(uploadEl, submitEl);
+
+  return form;
+}
+
+export function renderBlogPostAddedMessage() {
+  const div = createEl('div', { className: 'flash-message', innerText: 'Blog Post Added' });
+  document.querySelector('#root').prepend(div);
+}
+
+export function renderBlogPosts(blogPosts) {
+  const root = document.querySelector('#root');
+  const blog = createEl('div', { id: 'blog' });
+
+  const elements = blogPosts.map(createBlogPostBox);
+  blog.append(...elements);
+  root.append(blog);
+}
+
+export function createBlogPostBox(blogPost) {
+  const div = createEl('div', { className: 'blog-post' });
+  const titleEl = createEl('h1', { innerText: blogPost.title });
+  const textEl = createEl('p', { innerText: blogPost.text });
+  const imageEl = createEl('img', { src: blogPost.image });
+
+  div.append(titleEl, textEl);
+  
+  if (blogPost.image) {
+    div.append(imageEl);
+  }
+
+  return div;
 }

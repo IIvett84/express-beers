@@ -52,5 +52,38 @@
     "text": "Very cold, very big, very good",
     "id": 9,
     "createdAt": "2023-05-31T10:00:34.361Z"
+  },
+  {
+    "title": "Tegnapi Vault",
+    "text": "Milyen jóót magiceztünk!!!",
+    "id": 10,
+    "createdAt": "2023-06-01T08:07:40.464Z"
+  },
+  {
+    "title": "Test",
+    "text": "Test",
+    "id": 11,
+    "createdAt": "2023-06-01T08:32:18.751Z"
+  },
+  {
+    "title": "Peroni",
+    "text": "I love this beer",
+    "image": "/assets/upload/1685609857740-beers-gaefc863db_1280.jpg",
+    "id": 12,
+    "createdAt": "2023-06-01T08:57:48.732Z"
+  },
+  {
+    "title": "No image",
+    "text": "No image",
+    "image": "",
+    "id": 13,
+    "createdAt": "2023-06-01T08:58:28.377Z"
+  },
+  {
+    "title": "Best beer ever",
+    "text": "True!!!",
+    "image": "/assets/upload/1685612194720-beer-g0db89c5ae_1280.jpg",
+    "id": 14,
+    "createdAt": "2023-06-01T09:36:36.555Z"
   }
 ]

@@ -1,3 +1,9 @@
+:root {
+  --primary: rgb(74, 176, 202);
+  --secondary: rgb(63, 49, 106);
+  --text-color: white;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,4 +11,60 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--primary);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+nav {
+  padding: .5rem;
+  color: var(--text-color);
+  background-color: var(--secondary);
+}
+
+nav > h1 {
+  margin: 0;
+  padding: 0;
+}
+
+form.beer-form {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  width: 80%;
+  margin: 1rem auto;
+  color: var(--text-color);
+  background-color: var(--secondary);
+  padding: .5rem;
+}
+
+form.beer-form > input,
+form.beer-form > textarea {
+  width: 100%;
+  display: block;
+  padding: .5rem;
+  font-size: 1.5rem;
+  outline: none;
+  border: 2px solid var(--primary);
+}
+
+form.beer-form > button {
+  font-size: 1.5rem;
+}
+
+.blog-post {
+  width: 80%;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: var(--secondary);
+  color: var(--text-color);
+}
+
+.blog-post > h1 {
+  margin: 0;
+}
+
+.blog-post > img {
+  width: 100%;
+  max-width: 100%;
+}
+
