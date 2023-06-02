@@ -4,6 +4,10 @@ const path = require("path");
 const BLOG_FS_PATH = path.join(__dirname, "data", "blog.json");
 
 function getMaxId(blog) {
+  if (!blog.length) {
+    return 1;
+  }
+
   // maximum search alg.
   const el = blog.reduce(function(max, cur) {
     if (max.id < cur.id) {

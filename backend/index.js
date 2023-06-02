@@ -19,6 +19,11 @@ const app = express();
 // Watches: Content-Type: application/json
 app.use(express.json());
 
+// convert urlencoded request body to an object into the req.body
+// watched: Content-Type: x-www-form/urlencoded
+// watches: Content-Type: multipart/form-data
+app.use(express.urlencoded({ extended: true }));
+
 // This will make the file uploading feature works
 // put the files into the req object req.files
 // Watches: Content-Type: multipart/form-data
@@ -29,8 +34,19 @@ app.use(express.static(FE_FS_PATH));
 
 // event -> HTTP POST /api/beers
 app.post('/api/beers', async function(req, res) {
-  const body = req.body;
-  const newBeerBlogPost = await beersModel.addBeerBlogPost(body);
+  const beerBlogPost = req.body;
+  // <input type="file" name="image" />
+  const image = req?.files?.image; // optional chaining
+
+  if (image) {
+    const name = `${Date.now()}-${image.name}`
+    const imagePath = path.join(UPLOAD_FS_PATH, name);
+    const imageUri = `/assets/upload/${name}`;
+    await image.mv(imagePath);
+    beerBlogPost.image = imageUri;
+  }
+
+  const newBeerBlogPost = await beersModel.addBeerBlogPost(beerBlogPost);
   
   // .json ---> convert data json string and send those to client
   // .json ---> 2. close the response
@@ -40,19 +56,6 @@ app.post('/api/beers', async function(req, res) {
 app.get('/api/beers', async function(req, res) {
   const blogPosts = await beersModel.readBeersBlog();
   res.json(blogPosts);
-});
-
-app.post('/api/images', async function (req, res) {
-  // <input type="file" name="image" />
-  const image = req.files.image;
-
-  const name = `${Date.now()}-${image.name}`
-  const imagePath = path.join(UPLOAD_FS_PATH, name);
-  const imageUri = `/assets/upload/${name}`;
-
-  await image.mv(imagePath);
-
-  res.json({ imageUri });
 });
 
 app.listen(8080, function(){
